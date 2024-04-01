@@ -122,6 +122,7 @@ const Post = () => {
 
   return (
     <div className='min-h-screen'>
+       
 
         {/* first image box  */}
         <div className=' mx-auto ml-8 mt-8 text-white'>
@@ -135,7 +136,7 @@ const Post = () => {
             </div>
         </div>
 
-        {/* second title bo x */}
+        {/* second title box */}
         <div className='bg-[#2c2c31] pt-8 mx-auto mt-4 rounded-2xl w-4/6 '>
             <div className='px-4 space-x-3 text-[#646373] font-semibold'>
                 <span className='bg-[#353539] px-4 py-2 rounded-2xl'>bicycle</span>

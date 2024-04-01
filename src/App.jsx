@@ -16,6 +16,7 @@ import Hot from "./components/pages/hot/hot";
 import Explore from "./components/pages/explore/Explore";
 import Post from "./components/pages/singlepost/Post";
 import UserProfile from "./components/pages/singlepost/UserProfile";
+import HamburgerTabs from "./components/sidebar/HamburgerTabs";
 
 // import HamburgerMenu from "./components/sidebar/HamburgerMenu";
 // import AdminNavbar from "./components/layout/AdminNavbar";
@@ -25,6 +26,7 @@ const App = () => {
   const [show, setShow] = useState(false);
   const [isOpen, setIsOpen] = useState(false)
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const [showHamburgerTags,setShowHamburgerTags]=useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -46,10 +48,14 @@ const App = () => {
       {!isSmallScreen ? (
         <div className="lg:flex lg:relative h-screen">
           <div className="lg:w-[5%] bg-[#030303] h-screen lg:fixed">
-            <Sidebar show={show} isOpen={isOpen} setIsOpen={setIsOpen} setShow={setShow} />
+            <Sidebar show={show} isOpen={isOpen} setIsOpen={setIsOpen} setShow={setShow}  showHamburgerTags={showHamburgerTags} setShowHamburgerTags={setShowHamburgerTags}/>
           </div>
-          <div className="absolute bg-[#030303] left-[75px] z-50">
+          <div className="absolute bg-[#030303] left-[65px] z-50">
             <Tags show={show} setShow={setShow} />
+            {/* <HamburgerMenu isOpen={isOpen} /> */}
+          </div>
+          <div className="absolute bg-[#030303] left-[65px] z-50">
+            <HamburgerTabs show={showHamburgerTags}  />
             {/* <HamburgerMenu isOpen={isOpen} /> */}
           </div>
 

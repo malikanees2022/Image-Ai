@@ -1,20 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaShareAlt } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 import { BsEmojiFrown } from "react-icons/bs";
+import ShareBox from './ShareBox';
+import QuickViewBox from './QuickViewBox';
+
 
 const Post = ({ post, flexValue }) => {
-  const [showIcon, setShowIcon] = React.useState(false);
+  const [showIcon, setShowIcon] = useState(false);
+  const [showShareBox,setShowShareBox]=useState(false)
+  const [showQuickViewBox,setQuickViewBox]=useState(false)
   const titleInUrl = post.title.replace(/\s+/g, '-').toLowerCase();
   // const categoryInUrl = post.category.replace(/\s+/g, '-').toLowerCase();
   const categoryInUrl = post.category ? post.category.replace(/\s+/g, '-').toLowerCase() : 'Hot-Post';
 
-
+  const toggleShowShareBox = (e) => {
+    e.preventDefault();
+    setShowShareBox(!showShareBox);
+    if (!showShareBox) {
+      // Add overflow hidden to body when SpecialComponent is displayed
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Remove overflow hidden when SpecialComponent is closed
+      document.body.style.overflow = 'auto';
+    }
+  };
+  const toggleQuickViewBox = (e) => {
+    e.preventDefault();
+    setQuickViewBox(!showQuickViewBox);
+    if (!showQuickViewBox) {
+      // Add overflow hidden to body when SpecialComponent is displayed
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Remove overflow hidden when SpecialComponent is closed
+      document.body.style.overflow = 'auto';
+    }
+   
+  };
   const postStyle = {
     flexBasis: `${flexValue}%`,
     transition: 'flex-basis 0.5s ease' // Transition flex-basis over 0.5 seconds with ease timing function
   };
+   
+  
 
   return ( 
     // add custom styling clasname= custom-post for hover posttitle-div
@@ -23,18 +52,20 @@ const Post = ({ post, flexValue }) => {
          onMouseEnter={() => setShowIcon(true)} 
          onMouseLeave={() => setShowIcon(false)}>
       <div className="relative">
+
+       
         {/* custom image-scale class for scale  */}
         <img src={post.image} alt="" className='image-scale transform transition-transform duration-300'/>
         <div>
           {showIcon && (
              <>
              <div className='group'>
-             <div className=' p-2 inline-block bg-[#403f43ae] rounded-full absolute top-3 left-4'><FaShareAlt /></div>
+             <div onClick={toggleShowShareBox} className=' p-2 inline-block bg-[#403f43ae] rounded-full absolute top-3 left-4'><FaShareAlt /></div>
              <div className='px-4 hidden py-1  bg-[#000000b8] rounded-2xl font-semibold absolute top-3 left-14 group-hover:inline-block'>Share</div>
              </div>
             
              <div className='group'>
-               <div className='p-2 inline-block bg-[#403f4369] rounded-full absolute top-[40%] left-[40%] hover:text-blue-900'><IoSearch /></div>
+               <div onClick={toggleQuickViewBox} className='p-2 inline-block bg-[#403f4369] rounded-full absolute top-[40%] left-[40%] hover:text-blue-900'><IoSearch /></div>
                <div className='hidden group-hover:inline-block px-3 py-1  bg-[#000000b8] rounded-xl font-semibold absolute top-[40%] right-0'>Quick View</div>
              </div>
            </>
@@ -46,7 +77,14 @@ const Post = ({ post, flexValue }) => {
     <h1 className='text-xl font-semibold' >{post.title}</h1>
   </div>
     </Link>
+
     
+    {showShareBox && (
+      <ShareBox onClose={toggleShowShareBox}  id={post.id} title={post.title}/>
+    )}
+    {showQuickViewBox && (
+      <QuickViewBox onClose={toggleQuickViewBox} post={post}/>
+    )}
     </>
   );
 };

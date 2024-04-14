@@ -4,7 +4,7 @@ import { PiDotsSixBold } from "react-icons/pi"
 import { ImCheckboxUnchecked } from "react-icons/im";
 
 
-const FilterButton = ({categories,onFilterPosts,onRangeChange , activeCategory,setActiveCategory,categoryEmojiMap}) => {
+const FilterButton = ({categories,onFilterPosts,onRangeChange , activeCategory,setActiveCategory,categoryEmojiMap,showRange}) => {
 
   
 
@@ -14,13 +14,19 @@ const FilterButton = ({categories,onFilterPosts,onRangeChange , activeCategory,s
       <div className=' flex  justify-center items-center'>
         <CategoriesButton activeCategory={activeCategory} setActiveCategory={setActiveCategory} categories={categories} onFilterPosts={onFilterPosts} categoryEmojiMap={categoryEmojiMap}/>
       </div>
-      <div className=' flex justify-center items-center gap-2 mr-4'>
-        <div><ImCheckboxUnchecked className='bg-white rounded-sm'/></div>
+      {showRange ?
+       (
+        <div className=' flex justify-center items-center gap-2 mr-4'>
+        <div><ImCheckboxUnchecked className='bg-white rounded-sm text-white'/></div>
         <div className='flex items-center cursor-pointer w-60'>
           <input type="range" min={1} max={9} defaultValue={5} onChange={(e) => onRangeChange(e.target.value)} className='  w-full cursor-pointer bg-[#ced0d9] ' />
         </div>
-        <div><PiDotsSixBold className='text-3xl font-extrabold'/></div>
-      </div>
+        <div><PiDotsSixBold className='text-3xl font-extrabold text-white'/></div>
+       </div>
+             ) 
+      :null
+     }
+     
     </div>
   )
 }

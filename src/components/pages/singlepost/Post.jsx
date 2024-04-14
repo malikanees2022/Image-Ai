@@ -18,7 +18,7 @@ import { MdFacebook } from "react-icons/md";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import CopyTextButton from './CopyTextButton';
-import { homeData, reactionData, exploreData,hotData } from '../../common/commonData';
+import { homeData, reactionData, exploreData,hotData,tagData,singleUserData } from '../../common/commonData';
 
 const Post = () => {
     const {category,id,title}=useParams()
@@ -55,6 +55,12 @@ const Post = () => {
             return exploreData;
             case 'Hot Post':
                 return hotData;
+        case 'Jungle':
+        case 'Bike':
+        case 'Bycycle':
+            return tagData;
+            case 'All Posts':
+            return singleUserData;
         default:
             return [];
     }

@@ -5,7 +5,7 @@ import { FaNewspaper } from "react-icons/fa6";
 import { FaHashtag } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 
-const HamburgerTabs = ({show}) => {
+const AdminHamburgerTabs = ({show}) => {
   return (
     <div>
       {show && (
@@ -42,5 +42,5 @@ const HamburgerTabs = ({show}) => {
   )
 }
 
-export default HamburgerTabs
+export default AdminHamburgerTabs
 

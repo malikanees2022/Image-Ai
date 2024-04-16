@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const UserProfileTags = ({show,setShow}) => {
+const UserProfileTags = ({show,setShow,toggleAdminMode}) => {
   const handleLinkClick = () => {
     setShow(false); // Close the menu when a link is clicked
   };
@@ -16,7 +16,7 @@ const UserProfileTags = ({show,setShow}) => {
             <Link to={'/membership'} className='text-xl mt-6 text-[#646373] hover:text-white' onClick={handleLinkClick}>My Memebership</Link>
             <Link to={'/subscriptions'} className='text-xl mt-6 text-[#646373] hover:text-white' onClick={handleLinkClick}>Subscriptions</Link>
             <Link to={''} className='text-xl mt-6 text-[#646373] hover:text-white' onClick={handleLinkClick}>My Favorites</Link>
-            <Link to={''} className='text-xl mt-6 text-[#646373] hover:text-white' onClick={handleLinkClick}>Logout</Link>
+            <Link to={''} className='text-xl mt-6 text-[#646373] hover:text-white' onClick={toggleAdminMode}>Logout</Link>
 
         </div>
       )}

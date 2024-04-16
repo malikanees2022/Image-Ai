@@ -54,6 +54,19 @@ import AdminPoints from "./components/adminComponents/adminsidebar/adminsettings
 import AdminSpam from "./components/adminComponents/adminsidebar/adminsettings/AdminSpam";
 import AdminStats from "./components/adminComponents/adminsidebar/adminsettings/AdminStats";
 import AdminMailing from "./components/adminComponents/adminsidebar/adminsettings/AdminMailing";
+import AdminWidgets from "./components/adminComponents/adminsidebar/adminsettings/AdminWidgets";
+import AdminCategories from "./components/adminComponents/adminsidebar/adminsettings/AdminCategories";
+import AdminMenu from "./components/adminComponents/adminsidebar/adminsettings/AdminMenu";
+import AdminManage from "./components/adminComponents/adminsidebar/adminsettings/AdminManage";
+import AdminPlugins from "./components/adminComponents/adminsidebar/adminsettings/AdminPlugins";
+import AdminModerate from "./components/adminComponents/adminsidebar/adminsettings/AdminModerate";
+import AdminFlagged from "./components/adminComponents/adminsidebar/adminsettings/AdminFlagged";
+import AdminHidden from "./components/adminComponents/adminsidebar/adminsettings/AdminHidden";
+import UserProfileTags from "./components/adminComponents/adminsidebar/UserProfileTags";
+import AdminUserProfile from "./components/pages/singlepost/AdminUserProfile";
+import AdminUserDetailProfile from "./components/pages/singlepost/AdminUserDetailProfile";
+import Messages from "./components/pages/singlepost/Messages";
+import Membership from "./components/adminComponents/adminsidebar/Membership";
 
 
 // const App = () => {
@@ -148,6 +161,7 @@ const AdminRoutes = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [showHamburgerTags,setShowHamburgerTags]=useState(false)
+  const [showUserProfile,setShowUserProfile]=useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -168,16 +182,21 @@ const AdminRoutes = () => {
     {!isSmallScreen ? (
       <div className="lg:flex lg:relative h-screen">
         <div className="lg:w-[5%] bg-[#030303] h-screen lg:fixed z-50">
-        <AdminSidebar show={show} isOpen={isOpen} setIsOpen={setIsOpen} setShow={setShow} showHamburgerTags={showHamburgerTags} setShowHamburgerTags={setShowHamburgerTags}/>
+        <AdminSidebar show={show} isOpen={isOpen} setIsOpen={setIsOpen} setShow={setShow} showHamburgerTags={showHamburgerTags} setShowHamburgerTags={setShowHamburgerTags} showUserProfile={showUserProfile} setShowUserProfile={setShowUserProfile}/>
         </div>
         <div className="absolute bg-[#030303] left-[65px] z-50">
           <AdminTags show={show} setShow={setShow} />
           {/* <HamburgerMenu isOpen={isOpen} /> */}
         </div>
         <div className="absolute bg-[#030303] left-[65px] z-50">
-         <AdminHamburgerTabs show={showHamburgerTags}  />
+         <AdminHamburgerTabs show={showHamburgerTags}  setShow={setShowHamburgerTags} />
             {/* <HamburgerMenu isOpen={isOpen} /> */}
           </div>
+
+          <div className="absolute bg-[#030303] left-[65px] z-50">
+            <UserProfileTags show={showUserProfile} setShow={setShowUserProfile}/>
+          </div>
+
 
         <div className="w-[100%] lg:w-[95%] absolute lg:right-0 ">
           <div className="bg-[#030303]">
@@ -195,7 +214,8 @@ const AdminRoutes = () => {
             <Route path="/hot" element={<Hot/>} />
           <Route path="/explore" element={<Explore/>} />
              <Route path="/:category/:id/:title" element={<Post/>} />
-             <Route path="/user/:username" element={<UserProfile/>} />
+             <Route path="/user/:username" element={<AdminUserProfile/>} />
+             <Route path="/user/details" element={<AdminUserDetailProfile/>} />
              <Route path="/videos" element={<Vedios/>} />
                <Route path="/submitai" element={<AdminSubmitai/>} />
               <Route path="/submitimage" element={<AdminSubmitImage/>} />
@@ -221,6 +241,17 @@ const AdminRoutes = () => {
                <Route path="/admin/spam" element={<AdminSettings AdminCurrentTab={AdminSpam}/>} />
                <Route path="/admin/stats" element={<AdminSettings AdminCurrentTab={AdminStats}/>} />
                <Route path="/admin/mailing" element={<AdminSettings AdminCurrentTab={AdminMailing}/>} />
+               <Route path="/admin/widgets" element={<AdminSettings AdminCurrentTab={AdminWidgets}/>} />
+               <Route path="/admin/categories" element={<AdminSettings AdminCurrentTab={AdminCategories}/>} />
+               <Route path="/admin/menu" element={<AdminSettings AdminCurrentTab={AdminMenu}/>} />
+               <Route path="/admin/manage" element={<AdminSettings AdminCurrentTab={AdminManage}/>} />
+               <Route path="/admin/plugins" element={<AdminSettings AdminCurrentTab={AdminPlugins}/>} />
+               <Route path="/admin/moderate" element={<AdminSettings AdminCurrentTab={AdminModerate}/>} />
+               <Route path="/admin/flagged" element={<AdminSettings AdminCurrentTab={AdminFlagged}/>} />
+               <Route path="/admin/hidden" element={<AdminSettings AdminCurrentTab={AdminHidden}/>} />
+               <Route path="/messages" element={<Messages/>} />
+               <Route path="/membership" element={<Membership/>} />
+
               
 
                

@@ -18,7 +18,7 @@ import { MdFacebook } from "react-icons/md";
 import { FaRegPaperPlane } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import CopyTextButton from './CopyTextButton';
-import { homeData, reactionData, exploreData,hotData,tagData,singleUserData } from '../../common/commonData';
+import { homeData, reactionData, exploreData,hotData,tagData,singleUserData,adminsingleUserData } from '../../common/commonData';
 
 const Post = () => {
     const {category,id,title}=useParams()
